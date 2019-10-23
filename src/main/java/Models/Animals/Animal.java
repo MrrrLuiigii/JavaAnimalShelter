@@ -22,6 +22,8 @@ public abstract class Animal implements ISellable {
         this.gender = gender;
     }
 
+    public AnimalType getAnimalType() { return animalType; }
+
     public void setAnimalType(AnimalType animalType) { this.animalType = animalType; }
 
     public void setName(String name) { this.name = name; }

@@ -148,25 +148,16 @@ public class Main extends Application {
     }
 
     private Animal constructAnimal(String line) {
-        JsonObject jsonObject = new JsonParser().parse(line).getAsJsonObject();
-        JsonElement jsonAnimalType = jsonObject.get("animalType");
-        String type = jsonAnimalType.getAsString();
-
-        //<editor-fold desc="Deserialize using GsonBuilder">
-        GsonBuilder gsonBuilder = new GsonBuilder();
         Animal animal = null;
 
-        if (type.equals("Cat")){
-            gsonBuilder.registerTypeAdapter(Cat.class, new CatAdapter());
-            Gson gson = gsonBuilder.create();
-            animal = gson.fromJson(line, Cat.class);
+        if (line.contains("Dog")){
+            animal = new Dog();
         }
-        else if (type.equals("Dog")){
-            gsonBuilder.registerTypeAdapter(Dog.class, new DogAdapter());
-            Gson gson = gsonBuilder.create();
-            animal = gson.fromJson(line, Dog.class);
+        else if (line.contains("Cat")){
+            animal = new Cat();
         }
-        //</editor-fold>
+
+        animal.toString();
 
         return animal;
     }
@@ -179,10 +170,15 @@ public class Main extends Application {
                 File newAnimals = new File(System.getProperty("user.dir") + ".txt");
                 FileWriter fw = new FileWriter(newAnimals, false);
 
-                Gson gsonBuilder = new GsonBuilder().create();
                 for(Animal animal : reservation.getAnimals()){
-                    String animalJson = gsonBuilder.toJson(animal);
-                    fw.write(animalJson);
+                    if (animal.getAnimalType() == AnimalType.Dog){
+                        fw.write("Dog: ");
+                    }
+                    else if (animal.getAnimalType() == AnimalType.Cat){
+                        fw.write("Cat: ");
+                    }
+
+                    fw.write(animal.toString());
                     fw.write(System.getProperty("line.separator"));
                 }
                 fw.close();
