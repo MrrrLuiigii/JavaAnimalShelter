@@ -43,7 +43,7 @@ public class Main extends Application {
             exitApplication();
         });
         reservation = new Reservation();
-        readFile();
+        //readFile();
 
         //<editor-fold desc="Left panel: adding new animals to the shelter">
         VBox vbNewAnimals = new VBox(20);
@@ -99,6 +99,7 @@ public class Main extends Application {
                 if(!check){
                     new AlertBox().display("Error!", "Fill in all fields correctly.");
                 }
+                tbName.clear();
             });
         vbNewAnimals.getChildren().addAll(vbSpecies, vbName, vbGender, vbBadHabits, btnAddAnimal);
         //</editor-fold>

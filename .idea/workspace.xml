@@ -87,7 +87,7 @@
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="FX.Main" />
-      <module name="javaanimalshelter" />
+      <module name="JavaAnimalShelter" />
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files (x86)\Java\javafx-sdk-11.0.2\lib&quot; --add-modules=javafx.controls" />
       <extension name="coverage">
         <pattern>
@@ -195,6 +195,8 @@
       <workItem from="1571752338018" duration="3605000" />
       <workItem from="1571814174917" duration="4840000" />
       <workItem from="1571839039094" duration="2428000" />
+      <workItem from="1571839039094" duration="2797000" />
+      <workItem from="1571841850413" duration="1114000" />
     </task>
     <servers />
   </component>
