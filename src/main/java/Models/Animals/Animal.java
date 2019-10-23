@@ -30,6 +30,8 @@ public abstract class Animal implements ISellable {
 
     public void setGender(Gender gender) { this.gender = gender; }
 
+    public Reservor getReservedBy() { return reservedBy; }
+
     public void setReservedBy (Reservor reservedBy){
         this.reservedBy = reservedBy;
     }

@@ -28,7 +28,8 @@ public class Main extends Application {
 
     Reservation reservation;
     TextField tbBadHabits;
-    ListView<String> lvAnimals;
+    ListView<Animal> lvAnimals;
+    TextField tbReservor;
 
     public static void main(String[] args) {
         launch(args);
@@ -116,9 +117,19 @@ public class Main extends Application {
                 Label lblReserve = new Label("Reserve animal:");
                 HBox hbReserve = new HBox(5);
                     Label lblReservor = new Label("Name:");
-                    TextField tbReservor = new TextField();
+                    tbReservor = new TextField();
                     Button btnReserve = new Button("Reserve selected animal");
-                    btnReserve.setOnAction(e -> reserveAnimal());
+                    btnReserve.setOnAction(e -> {
+                        if (!tbReservor.getText().equals("")){
+                            if (!reserveAnimal()){
+                                new AlertBox().display("Error!", "This animal is already reserved.");
+                            }
+                        }
+                        else{
+                            new AlertBox().display("Error!", "Enter a name when reserving an animal.");
+                        }
+                        tbReservor.clear();
+                    });
                 hbReserve.getChildren().addAll(lblReservor, tbReservor, btnReserve);
             vbReservation.getChildren().addAll(lblReserve, hbReserve);
         vbAllAnimals.getChildren().addAll(vbAnimals, vbReservation);
@@ -192,14 +203,21 @@ public class Main extends Application {
     }
 
     private void setLvAnimals(){
-        ObservableList<String> animals = FXCollections.observableArrayList();
+        ObservableList<Animal> animals = FXCollections.observableArrayList();
         for(Animal animal : reservation.getAnimals()){
-            animals.add(animal.toString());
+            animals.add(animal);
         }
         lvAnimals.setItems(animals);
     }
 
     private boolean reserveAnimal() {
+        Animal animal = lvAnimals.getSelectionModel().getSelectedItem();
+
+        if(animal.getReservedBy() == null){
+            animal.Reserve(tbReservor.getText());
+            setLvAnimals();
+            return true;
+        }
 
         return false;
     }
