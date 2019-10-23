@@ -5,6 +5,7 @@ import Models.Animals.Cat;
 import Models.Animals.Dog;
 import Models.Animals.TypeAdapters.CatAdapter;
 import Models.Animals.TypeAdapters.DogAdapter;
+import Models.Enums.AnimalType;
 import Models.Enums.Gender;
 import Models.Reservations.Reservation;
 import com.google.gson.*;
@@ -21,6 +22,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.lang.reflect.GenericDeclaration;
 
 public class Main extends Application {
 
@@ -150,6 +152,7 @@ public class Main extends Application {
         JsonElement jsonAnimalType = jsonObject.get("animalType");
         String type = jsonAnimalType.getAsString();
 
+        //<editor-fold desc="Deserialize using GsonBuilder">
         GsonBuilder gsonBuilder = new GsonBuilder();
         Animal animal = null;
 
@@ -163,6 +166,7 @@ public class Main extends Application {
             Gson gson = gsonBuilder.create();
             animal = gson.fromJson(line, Dog.class);
         }
+        //</editor-fold>
 
         return animal;
     }
