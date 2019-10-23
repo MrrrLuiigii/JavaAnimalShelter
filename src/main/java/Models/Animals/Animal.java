@@ -1,28 +1,38 @@
 package Models.Animals;
 
 import Interfaces.ISellable;
-import Models.Enums.Gender;
+import Models.Enums.*;
 import Models.Reservations.Reservor;
 
 import java.time.LocalDateTime;
 
 public abstract class Animal implements ISellable {
 
+    private AnimalType animalType;
     private String name;
     private Gender gender;
     private Reservor reservedBy;
-    private float price;
+    private Double price;
 
-    public Animal(String name, Gender gender) {
+    public Animal(){}
+
+    public Animal(AnimalType animalType, String name, Gender gender) {
+        this.animalType = animalType;
         this.name = name;
         this.gender = gender;
     }
+
+    public void setAnimalType(AnimalType animalType) { this.animalType = animalType; }
+
+    public void setName(String name) { this.name = name; }
+
+    public void setGender(Gender gender) { this.gender = gender; }
 
     public void setReservedBy (Reservor reservedBy){
         this.reservedBy = reservedBy;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

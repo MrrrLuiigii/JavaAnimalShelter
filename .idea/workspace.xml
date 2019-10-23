@@ -16,10 +16,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="JUnit5 Test Class" />
         <option value="Interface" />
         <option value="JavaFXApplication" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -46,7 +46,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -87,7 +87,7 @@
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="FX.Main" />
-      <module name="java-animal-shelter" />
+      <module name="JavaAnimalShelter" />
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files (x86)\Java\javafx-sdk-11.0.2\lib&quot; --add-modules=javafx.controls" />
       <extension name="coverage">
         <pattern>
@@ -191,6 +191,9 @@
       <workItem from="1571396739732" duration="8946000" />
       <workItem from="1571648949429" duration="849000" />
       <workItem from="1571661039793" duration="576000" />
+      <workItem from="1571727172299" duration="3461000" />
+      <workItem from="1571752338018" duration="3605000" />
+      <workItem from="1571814174917" duration="4840000" />
     </task>
     <servers />
   </component>

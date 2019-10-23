@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="javaanimalshelter" />
+        <module name="JavaAnimalShelter" />
         <module name="java-animal-shelter" />
       </profile>
     </annotationProcessing>

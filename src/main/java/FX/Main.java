@@ -1,12 +1,13 @@
 package FX;
 
 import Models.Animals.Animal;
+import Models.Animals.Cat;
 import Models.Animals.Dog;
+import Models.Animals.TypeAdapters.CatAdapter;
+import Models.Animals.TypeAdapters.DogAdapter;
 import Models.Enums.Gender;
 import Models.Reservations.Reservation;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -15,7 +16,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -41,7 +41,7 @@ public class Main extends Application {
             exitApplication();
         });
         reservation = new Reservation();
-        //readFile();
+        readFile();
 
         //<editor-fold desc="Left panel: adding new animals to the shelter">
         VBox vbNewAnimals = new VBox(20);
@@ -146,8 +146,24 @@ public class Main extends Application {
     }
 
     private Animal constructAnimal(String line) {
-        Gson gsonBuilder = new GsonBuilder().create();
-        Animal animal = gsonBuilder.fromJson(line, Animal.class);
+        JsonObject jsonObject = new JsonParser().parse(line).getAsJsonObject();
+        JsonElement jsonAnimalType = jsonObject.get("animalType");
+        String type = jsonAnimalType.getAsString();
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        Animal animal = null;
+
+        if (type.equals("Cat")){
+            gsonBuilder.registerTypeAdapter(Cat.class, new CatAdapter());
+            Gson gson = gsonBuilder.create();
+            animal = gson.fromJson(line, Cat.class);
+        }
+        else if (type.equals("Dog")){
+            gsonBuilder.registerTypeAdapter(Dog.class, new DogAdapter());
+            Gson gson = gsonBuilder.create();
+            animal = gson.fromJson(line, Dog.class);
+        }
+
         return animal;
     }
 
@@ -159,10 +175,10 @@ public class Main extends Application {
                 File newAnimals = new File(System.getProperty("user.dir") + ".txt");
                 FileWriter fw = new FileWriter(newAnimals, false);
 
-                //Gson gsonBuilder = new GsonBuilder().create();
+                Gson gsonBuilder = new GsonBuilder().create();
                 for(Animal animal : reservation.getAnimals()){
-                    //String animalJson = gsonBuilder.toJson(animal);
-                    fw.write(animal.toString());
+                    String animalJson = gsonBuilder.toJson(animal);
+                    fw.write(animalJson);
                     fw.write(System.getProperty("line.separator"));
                 }
                 fw.close();

@@ -1,13 +1,17 @@
 package Models.Animals;
 
-import Models.Enums.Gender;
+import Models.Enums.*;
 
 public class Cat extends Animal {
 
     private String badHabits;
 
-    public Cat(String name, Gender gender, String badHabits) {
-        super(name, gender);
+    public Cat(){
+        super();
+    }
+
+    public Cat(AnimalType animalType, String name, Gender gender, String badHabits) {
+        super(animalType, name, gender);
         this.badHabits = badHabits;
     }
 

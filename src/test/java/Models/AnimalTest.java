@@ -3,6 +3,7 @@ package Models;
 import Models.Animals.Animal;
 import Models.Animals.Cat;
 import Models.Animals.Dog;
+import Models.Enums.AnimalType;
 import Models.Enums.Gender;
 import Models.Reservations.Reservor;
 import org.junit.jupiter.api.Test;
@@ -21,11 +22,11 @@ class AnimalTest {
 
     @BeforeEach
     void setUp() {
-        cat = new Cat("Rijvel", Gender.Male, "fighting");
-        dog = new Dog("Bolt", Gender.Male);
+        cat = new Cat(AnimalType.Cat, "Rijvel", Gender.Male, "fighting");
+        dog = new Dog(AnimalType.Dog, "Bolt", Gender.Male);
 
-        reservedCat = new Cat("Moppie", Gender.Female, "sneezing");
-        reservedDog = new Dog("Mitch", Gender.Male);
+        reservedCat = new Cat(AnimalType.Cat, "Moppie", Gender.Female, "sneezing");
+        reservedDog = new Dog(AnimalType.Dog, "Mitch", Gender.Male);
 
         reservedCat.setReservedBy(new Reservor("Marian", LocalDateTime.of(2019, 10, 16, 17, 15)));
         reservedDog.setReservedBy(new Reservor("Freddy", LocalDateTime.of(2019, 10, 16, 17, 15)));

@@ -35,7 +35,7 @@ public class ShopManager {
 
     private void addCat(Animal cat) {
         int len = ((Cat) cat).getBadHabits().length();
-        cat.setPrice((350 - (35 * len) < 35) ? (350 - (35 * len)) : 35);
+        cat.setPrice(new Double((350 - (35 * len) < 35) ? (350 - (35 * len)) : 35));
         this.shop.getAnimals().add(cat);
     }
 
@@ -50,7 +50,7 @@ public class ShopManager {
             }
         }
 
-        dog.setPrice((500 -(50 * dogs) < 50) ? (500 - (50 * dogs)) : 50);
+        dog.setPrice(new Double((500 -(50 * dogs) < 50) ? (500 - (50 * dogs)) : 50));
         this.shop.getAnimals().add(dog);
     }
 }

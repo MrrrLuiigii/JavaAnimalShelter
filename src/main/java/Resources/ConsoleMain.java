@@ -1,7 +1,7 @@
 package Resources;
 
-import Models.Animals.Animal;
-import Models.Enums.Gender;
+import Models.Animals.*;
+import Models.Enums.*;
 import Models.Reservations.Reservation;
 
 public class ConsoleMain

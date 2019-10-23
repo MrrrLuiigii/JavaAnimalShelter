@@ -3,6 +3,7 @@ package Models;
 import Models.Animals.Animal;
 import Models.Animals.Cat;
 import Models.Animals.Dog;
+import Models.Enums.AnimalType;
 import Models.Enums.Gender;
 import Models.Reservations.Reservation;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,8 +26,8 @@ class ReservationTest {
     void setUp() {
         reservation = new Reservation();
         animals = reservation.getAnimals();
-        animals.add(new Cat("Moppie", Gender.Female, "sneezing"));
-        animals.add(new Dog("Mitch", Gender.Male));
+        animals.add(new Cat(AnimalType.Cat, "Moppie", Gender.Female, "sneezing"));
+        animals.add(new Dog(AnimalType.Dog, "Mitch", Gender.Male));
 
         emptyReservation = new Reservation();
         emptyAnimals = emptyReservation.getAnimals();
