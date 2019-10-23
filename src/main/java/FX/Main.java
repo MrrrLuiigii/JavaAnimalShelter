@@ -8,6 +8,9 @@ import Models.Animals.TypeAdapters.DogAdapter;
 import Models.Enums.AnimalType;
 import Models.Enums.Gender;
 import Models.Reservations.Reservation;
+import Models.Shops.Product;
+import Models.Shops.Shop;
+import Models.Shops.ShopManager;
 import com.google.gson.*;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -23,13 +26,17 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.lang.reflect.GenericDeclaration;
+import java.text.DecimalFormat;
 
 public class Main extends Application {
 
-    Reservation reservation;
-    TextField tbBadHabits;
-    ListView<Animal> lvAnimals;
-    TextField tbReservor;
+    private ShopManager shopManager;
+    private Reservation reservation;
+
+    private TextField tbBadHabits;
+    private ListView<Animal> lvAnimals;
+    private ListView<Product> lvProducts;
+    private TextField tbReservor;
 
     public static void main(String[] args) {
         launch(args);
@@ -44,9 +51,10 @@ public class Main extends Application {
             exitApplication();
         });
         reservation = new Reservation();
+        shopManager = new ShopManager();
         //readFile();
 
-        //<editor-fold desc="Left panel: adding new animals to the shelter">
+        //<editor-fold desc="Adding new animals to the shelter">
         VBox vbNewAnimals = new VBox(20);
             VBox vbSpecies = new VBox(5);
                 Label lblSpecies = new Label("Species:");
@@ -105,7 +113,7 @@ public class Main extends Application {
         vbNewAnimals.getChildren().addAll(vbSpecies, vbName, vbGender, vbBadHabits, btnAddAnimal);
         //</editor-fold>
 
-        //<editor-fold desc="Center panel: all animals in the shelter and option to reserve">
+        //<editor-fold desc="All animals in the shelter and option to reserve">
         VBox vbAllAnimals = new VBox(20);
             VBox vbAnimals = new VBox(5);
                 Label lblAnimals = new Label("Animals:");
@@ -135,12 +143,63 @@ public class Main extends Application {
         vbAllAnimals.getChildren().addAll(vbAnimals, vbReservation);
         //</editor-fold>
 
+        //<editor-fold desc="Add products or animals to the shop">
+        VBox vbAddToShop = new VBox(20);
+            VBox vbProductName = new VBox(5);
+                Label lblProductName = new Label("Product name:");
+                TextField tbProductName = new TextField();
+            vbProductName.getChildren().addAll(lblProductName, tbProductName);
+            VBox vbProductPrice = new VBox(5);
+                Label lblProductPrice = new Label("Price:");
+                Spinner<Double> spProductPrice = new Spinner<>(0.00, 100.00, 0.0, 0.01);
+                spProductPrice.setEditable(true);
+            vbProductPrice.getChildren().addAll(lblProductPrice, spProductPrice);
+            Button btnAddToShop = new Button("Add product");
+            btnAddToShop.setOnAction(e -> {
+                addProductToShop(tbProductName.getText(), spProductPrice.getValue());
+                setLvProducts();
+            });
+        vbAddToShop.getChildren().addAll(vbProductName, vbProductPrice, btnAddToShop);
+        //</editor-fold>
+
+        //<editor-fold desc="All products in the shop">
+        VBox vbAllProducts = new VBox(20);
+            VBox vbProducts = new VBox(5);
+                Label lblProducts = new Label("Products:");
+                lvProducts = new ListView<>();
+                setLvProducts();
+                lvProducts.setPrefHeight(100);
+            vbProducts.getChildren().addAll(lblProducts, lvProducts);
+        vbAllProducts.getChildren().addAll(vbProducts);
+        //</editor-fold>
+
         HBox hbAnimalShelter = new HBox(20);
-        hbAnimalShelter.getChildren().addAll(vbNewAnimals, vbAllAnimals);
+        hbAnimalShelter.getChildren().addAll(vbNewAnimals, vbAllAnimals, vbAddToShop, vbAllProducts);
 
         Scene scene = new Scene(hbAnimalShelter, 1000, 500);
         window.setScene(scene);
         window.show();
+    }
+
+    private void setLvProducts() {
+        ObservableList<Product> products = FXCollections.observableArrayList();
+        for (Product product : shopManager.getShop().getProducts()) {
+            products.add(product);
+        }
+        lvProducts.setItems(products);
+    }
+
+
+    private boolean addProductToShop(String productName, Double price) {
+        if (!productName.equals("")){
+            if (shopManager.addProduct(new Product(productName, price))){
+                return true;
+            }
+            new AlertBox().display("Error!", "The price has to be at least 0.01 euro.");
+            return false;
+        }
+        new AlertBox().display("Error!", "Please enter a product name.");
+        return false;
     }
 
     private void readFile(){

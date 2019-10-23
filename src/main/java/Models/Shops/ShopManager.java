@@ -11,13 +11,17 @@ public class ShopManager {
         this.shop = new Shop();
     }
 
-    public boolean addProduct(String name, String description, float price){
-        if (price > 0){
-            this.shop.getProducts().add(new Product(name, description, price));
+    public boolean addProduct(Product product){
+        if (product.getPrice() > 0){
+            this.shop.getProducts().add(product);
             return true;
         }
 
         return false;
+    }
+
+    public Shop getShop() {
+        return shop;
     }
 
     public boolean addAnimal(Animal animal){

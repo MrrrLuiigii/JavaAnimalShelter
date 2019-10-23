@@ -27,4 +27,19 @@ public class Cat extends Animal {
     public String toString(){
         return super.toString() + String.format(", bad habits: %s", this.badHabits.toLowerCase());
     }
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public Double getPrice() {
+        return null;
+    }
+
+    @Override
+    public void setPrice(Double price) {
+
+    }
 }

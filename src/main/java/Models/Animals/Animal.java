@@ -2,6 +2,7 @@ package Models.Animals;
 
 import Interfaces.ISellable;
 import Models.Enums.*;
+import Models.Reservations.Reservation;
 import Models.Reservations.Reservor;
 
 import java.time.LocalDateTime;
@@ -36,8 +37,8 @@ public abstract class Animal implements ISellable {
         this.reservedBy = reservedBy;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setPrice(Reservation reservation) {
+
     }
 
     public boolean Reserve (String reservedBy){

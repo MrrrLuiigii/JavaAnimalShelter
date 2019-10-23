@@ -4,12 +4,10 @@ import Interfaces.ISellable;
 
 public class Product implements ISellable {
     private String name;
-    private String description;
-    private float price;
+    private Double price;
 
-    public Product(String name, String description, float price) {
+    public Product(String name, Double price) {
         this.name = name;
-        this.description = description;
         this.price = price;
     }
 
@@ -17,11 +15,22 @@ public class Product implements ISellable {
         return name;
     }
 
-    public String getDescription() {
-        return description;
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public float getPrice() {
+    public Double getPrice() {
         return price;
+    }
+
+    @Override
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("%s, %s", this.name, this.price);
     }
 }

@@ -30,4 +30,19 @@ public class Dog extends Animal{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         return super.toString() + String.format(", last walk: " + this.lastWalk.format(formatter));
     }
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public Double getPrice() {
+        return null;
+    }
+
+    @Override
+    public void setPrice(Double price) {
+
+    }
 }
