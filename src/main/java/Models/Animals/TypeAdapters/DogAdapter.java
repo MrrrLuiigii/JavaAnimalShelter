@@ -56,10 +56,44 @@ public class DogAdapter extends TypeAdapter<Dog>
                 dog.setPrice(reader.nextDouble());
             }
 
-            if("lastWalk".equals(fieldname)){
+            LocalDateTime localDateTime = null;
+
+            if("year".equals(fieldname)){
                 token = reader.peek();
-                dog.setLastWalk(LocalDateTime.parse(reader.nextString()));
+                localDateTime.withYear(Integer.parseInt(reader.nextString()));
             }
+
+            if("month".equals(fieldname)){
+                token = reader.peek();
+                localDateTime.withMonth(Integer.parseInt(reader.nextString()));
+            }
+
+            if("day".equals(fieldname)){
+                token = reader.peek();
+                localDateTime.withDayOfMonth(Integer.parseInt(reader.nextString()));
+            }
+
+            if("hour".equals(fieldname)){
+                token = reader.peek();
+                localDateTime.withHour(Integer.parseInt(reader.nextString()));
+            }
+
+            if("minute".equals(fieldname)){
+                token = reader.peek();
+                localDateTime.withMinute(Integer.parseInt(reader.nextString()));
+            }
+
+            if("second".equals(fieldname)){
+                token = reader.peek();
+                localDateTime.withSecond(Integer.parseInt(reader.nextString()));
+            }
+            if("nano".equals(fieldname)){
+                token = reader.peek();
+                localDateTime.withNano(Integer.parseInt(reader.nextString()));
+            }
+
+            dog.setLastWalk(localDateTime);
+
         }
         reader.endObject();
         return dog;
