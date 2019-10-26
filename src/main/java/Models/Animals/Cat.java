@@ -15,6 +15,12 @@ public class Cat extends Animal {
         this.badHabits = badHabits;
     }
 
+    public Cat(int id, AnimalType animalType, String name, Gender gender, Double price, String badHabits)
+    {
+        super(id, animalType, name, gender, price);
+        this.badHabits = badHabits;
+    }
+
     public String getBadHabits() {
         return badHabits;
     }

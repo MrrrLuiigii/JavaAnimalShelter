@@ -54,7 +54,6 @@ public class Main extends Application {
         });
         reservation = new Reservation();
         shopManager = new ShopManager();
-        //readFile();
 
         //<editor-fold desc="Adding new animals to the shelter">
         VBox vbNewAnimals = new VBox(20);
@@ -204,78 +203,11 @@ public class Main extends Application {
         return false;
     }
 
-    private void readFile(){
-        BufferedReader reader;
-        try{
-            reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + ".txt"));
-            String line = reader.readLine();
-            while(line != null){
-                reservation.getAnimals().add(constructAnimal(line));
-            }
-            reader.close();
-        } catch (FileNotFoundException e) {
-            new AlertBox().display("Error!", "Something went wrong... Your animals might not be loaded properly.");
-        } catch (IOException e) {
-            new AlertBox().display("Error!", "Something went wrong... Your animals might not be loaded properly.");
-        }
-    }
-
-    private Animal constructAnimal(String line) {
-        Animal animal = null;
-
-        if (line.contains("Dog")){
-            animal = new Dog();
-        }
-        else if (line.contains("Cat")){
-            animal = new Cat();
-        }
-
-        animal.toString();
-
-        return animal;
-    }
-
     private void exitApplication()
     {
-        DatabaseConnection dbc = null;
-        try
-        {
-            dbc = new DatabaseConnection();
-        } catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-
         boolean answer = new ConfirmBox().display("Exit application", "Are you sure you want to close the application?");
 
         if (answer){
-            try{
-                File newAnimals = new File(System.getProperty("user.dir") + ".txt");
-                FileWriter fw = new FileWriter(newAnimals, false);
-
-                for(Animal animal : reservation.getAnimals()){
-                    if (animal.getAnimalType() == AnimalType.Dog){
-                        fw.write("Dog: ");
-                        try
-                        {
-                            dbc.writeDog((Dog)animal);
-                        } catch (SQLException e)
-                        {
-                            e.printStackTrace();
-                        }
-                    }
-                    else if (animal.getAnimalType() == AnimalType.Cat){
-                        fw.write("Cat: ");
-                    }
-
-                    fw.write(animal.toString());
-                    fw.write(System.getProperty("line.separator"));
-                }
-                fw.close();
-            } catch (IOException e) {
-                new AlertBox().display("Error!", "Something went wrong... Your animals might not be saved properly.");
-            }
-
             Platform.exit();
         }
     }

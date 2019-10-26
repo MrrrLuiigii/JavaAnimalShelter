@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 public abstract class Animal implements ISellable {
 
+    private int id;
     private AnimalType animalType;
     private String name;
     private Gender gender;
@@ -21,6 +22,15 @@ public abstract class Animal implements ISellable {
         this.animalType = animalType;
         this.name = name;
         this.gender = gender;
+    }
+
+    public Animal(int id, AnimalType animalType, String name, Gender gender, Double price)
+    {
+        this.id = id;
+        this.animalType = animalType;
+        this.name = name;
+        this.gender = gender;
+        this.price = price;
     }
 
     public AnimalType getAnimalType() { return animalType; }
@@ -39,6 +49,11 @@ public abstract class Animal implements ISellable {
 
     public void setPrice(Reservation reservation) {
 
+    }
+
+    public int getId()
+    {
+        return id;
     }
 
     @Override

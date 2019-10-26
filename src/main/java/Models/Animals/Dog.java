@@ -20,6 +20,13 @@ public class Dog extends Animal{
         this.lastWalk = LocalDateTime.now().withNano(0).withSecond(0);
     }
 
+    public Dog(int id, AnimalType animalType, String name, Gender gender, Double price, LocalDateTime lastWalk, boolean needsWalk)
+    {
+        super(id, animalType, name, gender, price);
+        this.lastWalk = lastWalk;
+        this.needsWalk = needsWalk;
+    }
+
     public void setNeedsWalk(boolean needsWalk)
     {
         this.needsWalk = needsWalk;
