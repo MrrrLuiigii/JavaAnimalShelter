@@ -41,6 +41,29 @@ public abstract class Animal implements ISellable {
 
     }
 
+    @Override
+    public String getName()
+    {
+        return name;
+    }
+
+    public Gender getGender()
+    {
+        return gender;
+    }
+
+    @Override
+    public Double getPrice()
+    {
+        return price;
+    }
+
+    @Override
+    public void setPrice(Double price)
+    {
+        this.price = price;
+    }
+
     public boolean Reserve (String reservedBy){
         if (this.reservedBy == null) {
             this.reservedBy = new Reservor(reservedBy, LocalDateTime.now());

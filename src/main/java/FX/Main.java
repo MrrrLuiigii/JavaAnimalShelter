@@ -1,5 +1,6 @@
 package FX;
 
+import DAL.DatabaseConnection;
 import Models.Animals.Animal;
 import Models.Animals.Cat;
 import Models.Animals.Dog;
@@ -26,6 +27,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.lang.reflect.GenericDeclaration;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 
 public class Main extends Application {
@@ -233,7 +235,17 @@ public class Main extends Application {
         return animal;
     }
 
-    private void exitApplication() {
+    private void exitApplication()
+    {
+        DatabaseConnection dbc = null;
+        try
+        {
+            dbc = new DatabaseConnection();
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
         boolean answer = new ConfirmBox().display("Exit application", "Are you sure you want to close the application?");
 
         if (answer){
@@ -244,6 +256,13 @@ public class Main extends Application {
                 for(Animal animal : reservation.getAnimals()){
                     if (animal.getAnimalType() == AnimalType.Dog){
                         fw.write("Dog: ");
+                        try
+                        {
+                            dbc.writeDog((Dog)animal);
+                        } catch (SQLException e)
+                        {
+                            e.printStackTrace();
+                        }
                     }
                     else if (animal.getAnimalType() == AnimalType.Cat){
                         fw.write("Cat: ");

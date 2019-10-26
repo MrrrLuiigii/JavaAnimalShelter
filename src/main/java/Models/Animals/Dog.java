@@ -9,6 +9,7 @@ public class Dog extends Animal{
 
     private LocalDateTime lastWalk;
     private boolean needsWalk;
+    private double price;
 
     public Dog(){
         super();
@@ -17,6 +18,21 @@ public class Dog extends Animal{
     public Dog(AnimalType animalType, String name, Gender gender) {
         super(animalType, name, gender);
         this.lastWalk = LocalDateTime.now().withNano(0).withSecond(0);
+    }
+
+    public void setNeedsWalk(boolean needsWalk)
+    {
+        this.needsWalk = needsWalk;
+    }
+
+    public void setPrice(double price)
+    {
+        this.price = price;
+    }
+
+    public LocalDateTime getLastWalk()
+    {
+        return lastWalk;
     }
 
     public void setLastWalk(LocalDateTime lastWalk) { this.lastWalk = lastWalk; }
@@ -32,17 +48,12 @@ public class Dog extends Animal{
     }
 
     @Override
-    public String getName() {
-        return null;
-    }
-
-    @Override
     public Double getPrice() {
-        return null;
+        return this.price;
     }
 
     @Override
     public void setPrice(Double price) {
-
+        this.price = price;
     }
 }
