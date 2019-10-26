@@ -41,7 +41,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="C:/Program Files (x86)/Java/javafx-sdk-11.0.2/lib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -197,6 +197,7 @@
       <workItem from="1571839039094" duration="2428000" />
       <workItem from="1571839039094" duration="2797000" />
       <workItem from="1571841850413" duration="1114000" />
+      <workItem from="1572093712129" duration="664000" />
     </task>
     <servers />
   </component>
