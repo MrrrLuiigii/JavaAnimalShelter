@@ -7,39 +7,26 @@ import Models.Reservations.Reservor;
 
 import java.time.LocalDateTime;
 
-public abstract class Animal implements ISellable {
+public abstract class Animal {
 
     private int id;
-    private AnimalType animalType;
     private String name;
     private Gender gender;
     private Reservor reservedBy;
-    private Double price;
 
     public Animal(){}
 
-    public Animal(AnimalType animalType, String name, Gender gender) {
-        this.animalType = animalType;
+    public Animal(String name, Gender gender) {
         this.name = name;
         this.gender = gender;
     }
 
-    public Animal(int id, AnimalType animalType, String name, Gender gender, Double price)
+    public Animal(int id, String name, Gender gender)
     {
         this.id = id;
-        this.animalType = animalType;
         this.name = name;
         this.gender = gender;
-        this.price = price;
     }
-
-    public AnimalType getAnimalType() { return animalType; }
-
-    public void setAnimalType(AnimalType animalType) { this.animalType = animalType; }
-
-    public void setName(String name) { this.name = name; }
-
-    public void setGender(Gender gender) { this.gender = gender; }
 
     public Reservor getReservedBy() { return reservedBy; }
 
@@ -47,16 +34,11 @@ public abstract class Animal implements ISellable {
         this.reservedBy = reservedBy;
     }
 
-    public void setPrice(Reservation reservation) {
-
-    }
-
     public int getId()
     {
         return id;
     }
 
-    @Override
     public String getName()
     {
         return name;
@@ -65,27 +47,6 @@ public abstract class Animal implements ISellable {
     public Gender getGender()
     {
         return gender;
-    }
-
-    @Override
-    public Double getPrice()
-    {
-        return price;
-    }
-
-    @Override
-    public void setPrice(Double price)
-    {
-        this.price = price;
-    }
-
-    public boolean Reserve (String reservedBy){
-        if (this.reservedBy == null) {
-            this.reservedBy = new Reservor(reservedBy, LocalDateTime.now());
-            return true;
-        }
-
-        return false;
     }
 
     @Override

@@ -12,10 +12,8 @@ public class Shop {
 
     private DatabaseConnection dbc;
     private List<Product> products;
-    private List<Animal> animals;
 
     public Shop() {
-        this.animals = new ArrayList<>();
         getProducts();
     }
 
@@ -30,21 +28,5 @@ public class Shop {
         }
 
         return products;
-    }
-
-    public List<Animal> getAnimals() {
-        return animals;
-    }
-
-    public void setAnimals(List<Animal> animals) {
-        this.animals = animals;
-    }
-
-    public void sellProduct(){
-
-    }
-
-    public void sellAnimal(){
-
     }
 }

@@ -10,14 +10,14 @@ public class Cat extends Animal {
         super();
     }
 
-    public Cat(AnimalType animalType, String name, Gender gender, String badHabits) {
-        super(animalType, name, gender);
+    public Cat(String name, Gender gender, String badHabits) {
+        super(name, gender);
         this.badHabits = badHabits;
     }
 
-    public Cat(int id, AnimalType animalType, String name, Gender gender, Double price, String badHabits)
+    public Cat(int id, String name, Gender gender, String badHabits)
     {
-        super(id, animalType, name, gender, price);
+        super(id, name, gender);
         this.badHabits = badHabits;
     }
 
@@ -32,20 +32,5 @@ public class Cat extends Animal {
     @Override
     public String toString(){
         return super.toString() + String.format(", bad habits: %s", this.badHabits.toLowerCase());
-    }
-
-    @Override
-    public String getName() {
-        return null;
-    }
-
-    @Override
-    public Double getPrice() {
-        return null;
-    }
-
-    @Override
-    public void setPrice(Double price) {
-
     }
 }

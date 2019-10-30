@@ -6,6 +6,7 @@ import Models.Animals.*;
 import Models.Enums.*;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class Reservation {
     private List<Animal> animals = new ArrayList<>();
 
     public void NewCat(String name, Gender gender, String badHabits){
-        Cat cat = new Cat(AnimalType.Cat, name, gender, badHabits);
+        Cat cat = new Cat(name, gender, badHabits);
 
         try
         {
@@ -29,7 +30,7 @@ public class Reservation {
     }
 
     public void NewDog(String name, Gender gender){
-        Dog dog = new Dog(AnimalType.Dog, name, gender);
+        Dog dog = new Dog(name, gender);
 
         try
         {
@@ -53,5 +54,24 @@ public class Reservation {
         }
 
         return animals;
+    }
+
+    public boolean reserveAnimal(Animal animal, String reservor){
+        if (animal.getReservedBy() == null){
+            animal.setReservedBy(new Reservor(reservor, LocalDateTime.now()));
+
+            try
+            {
+                dbc = new DatabaseConnection();
+                dbc.writeReservor(animal);
+            } catch (Exception e) {
+                new AlertBox().display("Error!", "Something went wrong reserving this animals. Try again.");
+            }
+
+
+            return true;
+        }
+
+        return false;
     }
 }

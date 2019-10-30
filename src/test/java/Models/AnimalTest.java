@@ -22,26 +22,14 @@ class AnimalTest {
 
     @BeforeEach
     void setUp() {
-        cat = new Cat(AnimalType.Cat, "Rijvel", Gender.Male, "fighting");
-        dog = new Dog(AnimalType.Dog, "Bolt", Gender.Male);
+        cat = new Cat("Rijvel", Gender.Male, "fighting");
+        dog = new Dog("Bolt", Gender.Male);
 
-        reservedCat = new Cat(AnimalType.Cat, "Moppie", Gender.Female, "sneezing");
-        reservedDog = new Dog(AnimalType.Dog, "Mitch", Gender.Male);
+        reservedCat = new Cat("Moppie", Gender.Female, "sneezing");
+        reservedDog = new Dog("Mitch", Gender.Male);
 
         reservedCat.setReservedBy(new Reservor("Marian", LocalDateTime.of(2019, 10, 16, 17, 15)));
         reservedDog.setReservedBy(new Reservor("Freddy", LocalDateTime.of(2019, 10, 16, 17, 15)));
-    }
-
-    @Test
-    void ReserveTest() {
-        assertTrue(cat.Reserve("Nicky"));
-        assertTrue(dog.Reserve("Nicky"));
-    }
-
-    @Test
-    void ReserveTestAlreadyReserved(){
-        assertFalse(reservedCat.Reserve("Nicky"));
-        assertFalse(reservedDog.Reserve("Nicky"));
     }
 
     @Test

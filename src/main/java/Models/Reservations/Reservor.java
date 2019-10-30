@@ -26,6 +26,10 @@ public class Reservor {
         this.reservedAt = LocalDateTime.now();
     }
 
+    public Reservor(int reservorId) {
+        this.id = reservorId;
+    }
+
     public int getId()
     {
         return id;
@@ -33,5 +37,9 @@ public class Reservor {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

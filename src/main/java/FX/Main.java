@@ -1,18 +1,10 @@
 package FX;
 
-import DAL.DatabaseConnection;
 import Models.Animals.Animal;
-import Models.Animals.Cat;
-import Models.Animals.Dog;
-import Models.Animals.TypeAdapters.CatAdapter;
-import Models.Animals.TypeAdapters.DogAdapter;
-import Models.Enums.AnimalType;
 import Models.Enums.Gender;
 import Models.Reservations.Reservation;
 import Models.Shops.Product;
-import Models.Shops.Shop;
 import Models.Shops.ShopManager;
-import com.google.gson.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -24,11 +16,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.io.*;
-import java.lang.reflect.GenericDeclaration;
-import java.sql.SQLException;
-import java.text.DecimalFormat;
 
 public class Main extends Application {
 
@@ -110,6 +97,7 @@ public class Main extends Application {
                     new AlertBox().display("Error!", "Fill in all fields correctly.");
                 }
                 tbName.clear();
+                tbBadHabits.clear();
             });
         vbNewAnimals.getChildren().addAll(vbSpecies, vbName, vbGender, vbBadHabits, btnAddAnimal);
         //</editor-fold>
@@ -224,7 +212,7 @@ public class Main extends Application {
         Animal animal = lvAnimals.getSelectionModel().getSelectedItem();
 
         if(animal.getReservedBy() == null){
-            animal.Reserve(tbReservor.getText());
+            reservation.reserveAnimal(animal, tbReservor.getText());
             setLvAnimals();
             return true;
         }
