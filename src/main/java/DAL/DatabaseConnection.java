@@ -80,12 +80,19 @@ public class DatabaseConnection
         }
 
         String query = "insert into reservation " +
-                "(reservor_id, animal_id) " +
-                "values (?, ?)";
+                "(reservor_id, animal_id, animaltype) " +
+                "values (?, ?, ?)";
 
         PreparedStatement pst = conn.prepareStatement(query);
         pst.setInt(1, reservor.getId());
         pst.setInt(2, animal.getId());
+
+        if (animal instanceof Dog){
+            pst.setString(3, "Dog");
+        }
+        else if (animal instanceof Cat){
+            pst.setString(3, "Cat");
+        }
 
         pst.execute();
         pst.close();
@@ -195,7 +202,7 @@ public class DatabaseConnection
             Gender gender = Gender.valueOf(rs.getString("gender"));
             String badhabbits = rs.getString("badhabbits");
             Cat cat = new Cat(id, name, gender, badhabbits);
-            cat = (Cat) getReservorId(cat);
+            cat = (Cat) getReservorId(cat, "Cat");
             cats.add(cat);
         }
 
@@ -219,25 +226,27 @@ public class DatabaseConnection
             Gender gender = Gender.valueOf(rs.getString("gender"));
             Boolean needswalk = rs.getBoolean("needswalk");
             Dog dog = new Dog(id, name, gender, LocalDateTime.now(), needswalk);
-            dog = (Dog) getReservorId(dog);
+            dog = (Dog) getReservorId(dog, "Dog");
             dogs.add(dog);
         }
 
         return dogs;
     }
 
-    private Animal getReservorId(Animal animal) throws SQLException
+    private Animal getReservorId(Animal animal, String animaltype) throws SQLException
     {
         Connection conn = getConnection();
 
-        String query = "select reservor_id from reservation where animal_id = ?";
+        String query = "select reservor_id from reservation where animal_id = ? and animaltype = ?";
 
         PreparedStatement pst = conn.prepareStatement(query);
         pst.setInt(1, animal.getId());
+        pst.setString(2, animaltype);
 
         ResultSet rs = pst.executeQuery();
 
         int reservorId = 0;
+
 
         while (rs.next()){
             reservorId = rs.getInt("reservor_id");

@@ -12,13 +12,6 @@ public class Reservor {
         this.reservedAt = reservedAt;
     }
 
-    public Reservor(int id, String name, LocalDateTime reservedAt)
-    {
-        this.id = id;
-        this.name = name;
-        this.reservedAt = reservedAt;
-    }
-
     public Reservor(int id, String name)
     {
         this.id = id;
