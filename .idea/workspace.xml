@@ -200,6 +200,7 @@
       <workItem from="1572093712129" duration="11118000" />
       <workItem from="1572460793372" duration="8227000" />
       <workItem from="1572857839423" duration="4319000" />
+      <workItem from="1573027280823" duration="638000" />
     </task>
     <servers />
   </component>
@@ -236,11 +237,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/Models/Reservations/Reservation.java</url>
           <line>36</line>
           <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/DAL/DatabaseConnection.java</url>
-          <line>69</line>
-          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
